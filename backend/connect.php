@@ -3,10 +3,9 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "shopdev";
 
 // Using the above variables as parameter values
-$conn = new mysqli($servername, $username, $password,$dbname); // Create connection
+$conn = new mysqli($servername, $username, $password); // Create connection
 
 // Check connection
 if ($conn->connect_error) {
