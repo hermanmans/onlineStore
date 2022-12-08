@@ -7,17 +7,11 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require './vendor/autoload.php';// This is compulsory for our framework to work, but don't worry too much about how it works
 
 $app = new \Slim\App;// We create an object of the Slim framework main app
-
-var_dump ($app); ///////////////////TEST tos see if slim works
-
-
-
-/*
 // Running the Slim framework, Get Method
 $app->get('/books', function (Request $request, Response $response, array $args) {// first parameter defines the URL that this GET request endpoint shall point to
     require_once 'connect.php';// Calling the database connection file
 
-    $query = "select * from shopdev";// SQL query
+    $query = "SELECT * FROM shop;";// SQL query
     $result = $conn->query($query);
 
     while ($row = $result->fetch_assoc()){// Loop through each field in the library table
@@ -28,5 +22,5 @@ $app->get('/books', function (Request $request, Response $response, array $args)
 });
 
 $app->run(); //this ensures that the code runs in Slim
-*/
+
 ?>
