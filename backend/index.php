@@ -6,10 +6,10 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require './vendor/autoload.php';// This is compulsory for our framework to work, but don't worry too much about how it works
 
-/*$app = new \Slim\App;// We create an object of the Slim framework main app
+$app = new \Slim\App;// We create an object of the Slim framework main app
 
 var_dump ($app); ///////////////////TEST tos see if slim works
-*/
+
 
 
 
