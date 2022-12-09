@@ -3,9 +3,8 @@
 // In the following two lines, we are calling the two dependacies within the Slim which we are going to use of later 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use Slim\Factory\AppFactory;
 
-require '/bookShop/vendor/autoload.php';// This is compulsory for our framework to work, but don't worry too much about how it works
+require './vendor/autoload.php';// This is compulsory for our framework to work, but don't worry too much about how it works
 
 /*$app = AppFactory::create();
 
