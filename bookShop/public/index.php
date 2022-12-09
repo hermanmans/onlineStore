@@ -5,9 +5,9 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\Factory\AppFactory;
 
-require __DIR__.'../vendor/autoload.php';// This is compulsory for our framework to work, but don't worry too much about how it works
+require '/bookShop/vendor/autoload.php';// This is compulsory for our framework to work, but don't worry too much about how it works
 
-$app = AppFactory::create();
+/*$app = AppFactory::create();
 
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
     $name = $args['name'];
@@ -16,6 +16,11 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 });
 
 $app->run();
-
+*/
+$app = new \Slim\App;
+$app->get('/', function () {
+  echo 'Welcome to my slim app';
+});
+$app->run();
 
 ?>
