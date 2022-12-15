@@ -1,4 +1,7 @@
-<?=template_header('Place Order')?>
+<?=
+require_once ('functions.php');
+template_header('Place Order');
+?>
 
 <div class="placeorder content-wrapper">
     <h1>Your Order Has Been Placed</h1>

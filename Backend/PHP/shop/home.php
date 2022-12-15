@@ -18,8 +18,8 @@ template_header('Home');
     <h2>Recently Added Products</h2>
     <div class="products">
         <?php foreach ($recently_added_products as $product): ?>
-        <a href="index.php?page=product&id=<?=$product['book_id']?>" class="product">
-            <img src="imgs/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
+        <a href="index.php?page=product&book_id=<?=$product['book_id']?>" class="product">
+            <img src="/Images/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
             <span class="price">
                  &#82;<?=$product['price']?>

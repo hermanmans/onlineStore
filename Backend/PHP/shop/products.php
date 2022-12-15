@@ -15,7 +15,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $total_products = $pdo->query('SELECT * FROM shop;')->rowCount();
 ?>
 
-<?=template_header('Products')?>
+<?=
+require_once ('functions.php');
+template_header('Products');
+?>
 
 <div class="products content-wrapper">
     <h1>Products</h1>
@@ -23,7 +26,7 @@ $total_products = $pdo->query('SELECT * FROM shop;')->rowCount();
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
         <a href="index.php?page=product&id=<?=$product['book_id']?>" class="product">
-            <img src="imgs/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
+            <img src="Images/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
             <span class="price">
                 &#82;<?=$product['price']?>

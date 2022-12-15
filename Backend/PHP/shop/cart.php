@@ -106,7 +106,7 @@ if ($products_in_cart) {
                 <tr>
                     <td class="img">
                         <a href="index.php?page=product&id=<?=$product['book_id']?>">
-                            <img src="imgs/<?=$product['image']?>" width="50" height="50" alt="<?=$product['book_name']?>">
+                            <img src="Images/<?=$product['image']?>" width="50" height="50" alt="<?=$product['book_name']?>">
                         <!--Specify image folder-->
                         </a>
                     </td>
