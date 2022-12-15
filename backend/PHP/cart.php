@@ -106,20 +106,20 @@ if ($products_in_cart) {
                 <tr>
                     <td class="img">
                         <a href="index.php?page=product&id=<?=$product['book_id']?>">
-                            <img src="imgs/<?=$product['image']?>" width="50" height="50" alt="<?=$product['name']?>">
+                            <img src="imgs/<?=$product['image']?>" width="50" height="50" alt="<?=$product['book_name']?>">
                         <!--Specify image folder-->
                         </a>
                     </td>
                     <td>
-                        <a href="index.php?page=product&id=<?=$product['id']?>"><?=$product['name']?></a>
+                        <a href="index.php?page=product&id=<?=$product['book_id']?>"><?=$product['book_name']?></a>
                         <br>
-                        <a href="index.php?page=cart&remove=<?=$product['id']?>" class="remove">Remove</a>
+                        <a href="index.php?page=cart&remove=<?=$product['book_id']?>" class="remove">Remove</a>
                     </td>
-                    <td class="price">&dollar;<?=$product['price']?></td>
+                    <td class="price">&#82;<?=$product['price']?></td>
                     <td class="quantity">
-                        <input type="number" name="quantity-<?=$product['id']?>" value="<?=$products_in_cart[$product['id']]?>" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
+                        <input type="number" name="quantity-<?=$product['book_id']?>" value="<?=$products_in_cart[$product['book_id']]?>" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
                     </td>
-                    <td class="price">&dollar;<?=$product['price'] * $products_in_cart[$product['id']]?></td>
+                    <td class="price">&#82;<?=$product['price'] * $products_in_cart[$product['book_id']]?></td>
                 </tr>
                 <?php endforeach; ?>
                 <?php endif; ?>
@@ -127,7 +127,7 @@ if ($products_in_cart) {
         </table>
         <div class="subtotal">
             <span class="text">Subtotal</span>
-            <span class="price">&dollar;<?=$subtotal?></span>
+            <span class="price">&#82;<?=$subtotal?></span>
         </div>
         <div class="buttons">
             <input type="submit" value="Update" name="update">

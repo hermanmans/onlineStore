@@ -1,5 +1,4 @@
 <?php
-session_start();
 function pdo_connect_mysql() {
     // Update the details below with your MySQL details
     //$DATABASE_HOST = "sql7.freesqldatabase.com";
@@ -14,11 +13,11 @@ function pdo_connect_mysql() {
     $conn = new PDO("mysql:host=$servername;dbname=sql7583456", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
+    //echo "Connected successfully";
     } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    phpinfo();
-    mysql_ping();
+    //echo "Connection failed: " . $e->getMessage();
+    //phpinfo();
+    //mysql_ping();
     }
 
 }

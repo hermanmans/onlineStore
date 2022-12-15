@@ -5,7 +5,10 @@ $stmt->execute();
 $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?=template_header('Home')?>
+<?=
+require_once ('functions.php');
+template_header('Home');
+?>
 
 <div class="featured">
     <h2>Gadgets</h2>
@@ -19,7 +22,7 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img src="imgs/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
             <span class="price">
-                &dollar;<?=$product['price']?>
+                 &#82;<?=$product['price']?>
                 <?php if ($product['retail_price'] > 0): ?>
                 <span class="rrp">	&#82;<?=$product['retail_price']?></span>
                 <?php endif; ?>
