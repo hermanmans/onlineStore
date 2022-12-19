@@ -32,4 +32,4 @@ template_header('Home');
     </div>
 </div>
 
-<?=template_footer()?>
+<?=template_footer();?>

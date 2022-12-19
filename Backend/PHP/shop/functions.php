@@ -1,4 +1,5 @@
 <?php
+session_start();
 function pdo_connect_mysql() {
     // Update the details below with your MySQL details
     //$DATABASE_HOST = "sql7.freesqldatabase.com";

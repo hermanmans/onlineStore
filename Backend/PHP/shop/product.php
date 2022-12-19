@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 // Check to make sure the id parameter is specified in the URL
 if (isset($_GET['book_id'])) {
     // Prepare statement and execute, prevents SQL injection
@@ -23,7 +24,7 @@ template_header('Product');
 ?>
 
 <div class="product content-wrapper">
-    <img src="Images/<?=$product['image']?>" width="500" height="500" alt="<?=$product['book_name']?>">
+    <img src="/Images/<?=$product['image']?>" width="500" height="500" alt="<?=$product['book_name']?>">
     <div>
         <h1 class="name"><?=$product['book_name']?></h1>
         <span class="price">
