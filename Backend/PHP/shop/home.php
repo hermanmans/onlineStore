@@ -1,6 +1,6 @@
 <?php
 // Get the 4 most recently added products
-$stmt = $pdo->prepare('SELECT * FROM shop ORDER BY date_added DESC LIMIT 4');
+$stmt = $pdo->prepare('SELECT*FROM shop ORDER BY book_id ASC LIMIT 4;');
 $stmt->execute();
 $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

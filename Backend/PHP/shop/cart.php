@@ -105,13 +105,13 @@ if ($products_in_cart) {
                 <?php foreach ($products as $product): ?>
                 <tr>
                     <td class="img">
-                        <a href="index.php?page=product&id=<?=$product['book_id']?>">
-                            <img src="Images/<?=$product['image']?>" width="50" height="50" alt="<?=$product['book_name']?>">
+                        <a href="index.php?page=product&book_id=<?=$product['book_id']?>">
+                            <img src="/Images/<?=$product['image']?>" width="50" height="50" alt="<?=$product['book_name']?>">
                         <!--Specify image folder-->
                         </a>
                     </td>
                     <td>
-                        <a href="index.php?page=product&id=<?=$product['book_id']?>"><?=$product['book_name']?></a>
+                        <a href="index.php?page=product&book_id=<?=$product['book_id']?>"><?=$product['book_name']?></a>
                         <br>
                         <a href="index.php?page=cart&remove=<?=$product['book_id']?>" class="remove">Remove</a>
                     </td>

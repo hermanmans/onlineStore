@@ -87,10 +87,10 @@ header .link-icons a span {
 	top: 22px;
 	right: 0;
 }
-main .featured {
+main,.featured {
 	display: flex;
 	flex-direction: column;
-	background-image: url(imgs/featured-image.jpg);
+	background-image: url(/Images/background.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 500px;
