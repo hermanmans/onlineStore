@@ -6,7 +6,7 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?=
-require_once ('functions.php');
+include "functions.php";
 template_header('Home');
 ?>
 

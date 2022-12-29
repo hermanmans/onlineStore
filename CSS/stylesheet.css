@@ -124,7 +124,7 @@ main .recentlyadded h2 {
 	width: 100%;
 	border-bottom: 1px solid #EEEEEE;
 }
-main .recentlyadded .products, main .products .products-wrapper {
+main,.recentlyadded,.products, main,.products,.products-wrapper {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
