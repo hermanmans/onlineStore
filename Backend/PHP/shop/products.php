@@ -13,12 +13,7 @@ $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Get the total number of products
 $total_products = $pdo->query('SELECT * FROM shop')->rowCount();
-?>
-
-<?=
-require ('functions.php');
 template_header('Products');
-
 ?>
 
 <div class="products content-wrapper">

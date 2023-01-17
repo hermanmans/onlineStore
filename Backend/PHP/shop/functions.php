@@ -6,19 +6,20 @@ function pdo_connect_mysql() {
     //$DATABASE_USER = "sql7583456";
     //$DATABASE_PASS = "gjXWE9H8YW";
     //$DATABASE_NAME = "sql7583456";
-    $servername = "sql7.freesqldatabase.com";
-    $username = "sql7583456";
-    $password = "gjXWE9H8YW";
+    $servername = "localhost";//localhost used instead
+    $username = "root";
+    $password = "root";
+    $DATABASE_NAME = 'book_library';
 
     try {
-    $conn = new PDO("mysql:host=$servername;dbname=sql7583456", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=book_library", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connected successfully";
+    echo "Connected successfully";
     } catch(PDOException $e) {
-    //echo "Connection failed: " . $e->getMessage();
-    //phpinfo();
-    //mysql_ping();
+    echo "Connection failed: " . $e->getMessage();
+    phpinfo();
+    mysql_ping();
     }
 
 }
