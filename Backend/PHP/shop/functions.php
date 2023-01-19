@@ -1,28 +1,4 @@
 <?php
-session_start();
-function pdo_connect_mysql() {
-    // Update the details below with your MySQL details
-    //$DATABASE_HOST = "sql7.freesqldatabase.com";
-    //$DATABASE_USER = "sql7583456";
-    //$DATABASE_PASS = "gjXWE9H8YW";
-    //$DATABASE_NAME = "sql7583456";
-    $servername = "localhost";//localhost used instead
-    $username = "root";
-    $password = "root";
-    $DATABASE_NAME = 'book_library';
-
-    try {
-    $conn = new PDO("mysql:host=$servername;dbname=book_library", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-    } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    phpinfo();
-    mysql_ping();
-    }
-
-}
 function template_header($title) {
     // Get the amount of items in the shopping cart, this will be displayed in the header.
 $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
