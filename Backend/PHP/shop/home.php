@@ -9,7 +9,6 @@ if ($result) {
     echo "Error: " . $sql . "<br>" . $conn->error;
   };
 $recently_added_products = $result -> fetch_all(MYSQLI_ASSOC);
-include "functions.php";
 template_header('Home');
 ?>
 
