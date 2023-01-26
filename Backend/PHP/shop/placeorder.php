@@ -1,5 +1,4 @@
 <?=
-require_once ('functions.php');
 template_header('Place Order');
 ?>
 

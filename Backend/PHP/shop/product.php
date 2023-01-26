@@ -1,14 +1,17 @@
 <?php
-include 'connect.php';
 ini_set('display_errors', 1);
 // Check to make sure the id parameter is specified in the URL
-if (isset($_GET['book_id'])) {
+$book_id = [$_GET['book_id']];
+//print_r($book_id);
+if (isset($book_id)) {
     // Prepare statement and execute, prevents SQL injection
     $stmt = $conn->prepare('SELECT * FROM shop WHERE book_id = ?');
-    $stmt->bind_param("i", [$_GET['book_id']]);
+    $stmt->bind_param("i", $book_id);
     $stmt->execute();
     // Fetch the product from the database and return the result as an Array
-    $product = $stmt->fetch_assoc();
+    $result  = $stmt->get_result();
+    $product = $result->fetch_array(MYSQLI_ASSOC); 
+    print_r($product);
     // Check if the product exists (array is not empty)
     if (!$product) {
         // Simple error to display if the id for the product doesn't exists (array is empty)

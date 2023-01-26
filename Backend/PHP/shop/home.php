@@ -1,6 +1,6 @@
 <?php
 // Get the 4 most recently added products
-include 'connect.php';
+
 $sql='SELECT * FROM shop ORDER BY book_id ASC LIMIT 4;';
 $result = $conn->query($sql);
 if ($result) {
@@ -34,7 +34,4 @@ template_header('Home');
     </div>
 </div>
 
-<?php
-include "functions.php";
-template_footer();
-?>
+<?=template_footer()?>

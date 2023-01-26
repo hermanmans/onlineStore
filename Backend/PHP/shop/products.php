@@ -5,20 +5,21 @@ include "functions.php";
 $num_products_on_each_page = 4;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
+print_r($current_page);
 // Select products ordered by the date added
 $stmt = $conn->prepare('SELECT * FROM shop ORDER BY book_id ASC LIMIT ?,?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $limitA = 1;
 $limitB = 2;
-$stmt->bind_param("ii",$limitA, (($current_page - $limitA) * $num_products_on_each_page));
+$calc = ($current_page - $limitA*$num_products_on_each_page);
+$stmt->bind_param("ii",$limitA, $calc);
 $stmt->bind_param("ii",$limitB, $num_products_on_each_page);
 
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
-$products = $stmt->fetchAll();
+$products = $stmt->fetch_all(MYSQLI_ASSOC);
 // Get the total number of products
-$total_products = $conn->query('SELECT * FROM shop')->rowCount();
-
+$total_products = $conn->query('SELECT COUNT (*) FROM shop');
 template_header('Products');
 ?>
 
@@ -49,9 +50,6 @@ template_header('Products');
     </div>
 </div>
 
-<?=
-include "functions.php";
-template_footer();
-?>
+<?=template_footer()?>
 
 
