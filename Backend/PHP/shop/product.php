@@ -1,13 +1,14 @@
 <?php
-include 'connect';
+include 'connect.php';
 ini_set('display_errors', 1);
 // Check to make sure the id parameter is specified in the URL
 if (isset($_GET['book_id'])) {
     // Prepare statement and execute, prevents SQL injection
-    $stmt = $pdo->prepare('SELECT * FROM shop WHERE book_id = ?');
-    $stmt->execute([$_GET['book_id']]);
+    $stmt = $conn->prepare('SELECT * FROM shop WHERE book_id = ?');
+    $stmt->bind_param("i", [$_GET['book_id']]);
+    $stmt->execute();
     // Fetch the product from the database and return the result as an Array
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    $product = $stmt->fetch_assoc();
     // Check if the product exists (array is not empty)
     if (!$product) {
         // Simple error to display if the id for the product doesn't exists (array is empty)
@@ -15,12 +16,9 @@ if (isset($_GET['book_id'])) {
     }
 } else {
     // Simple error to display if the id wasn't specified
-    exit('Product does not exist!');
+    exit('Id not specified!');
 }
-?>
 
-<?=
-require_once ('functions.php');
 template_header('Product');
 ?>
 
