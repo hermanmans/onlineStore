@@ -5,22 +5,23 @@ include "functions.php";
 $num_products_on_each_page = 4;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
-print_r($current_page);
 // Select products ordered by the date added
 $stmt = $conn->prepare('SELECT * FROM shop ORDER BY book_id ASC LIMIT ?,?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $limitA = 1;
-$limitB = 2;
-$calc = ($current_page - $limitA*$num_products_on_each_page);
+$limitB = 0;
+$calc = (($current_page - $limitA)*$num_products_on_each_page);
 $stmt->bind_param("ii",$limitA, $calc);
 $stmt->bind_param("ii",$limitB, $num_products_on_each_page);
-
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
-$products = $stmt->fetch_all(MYSQLI_ASSOC);
+$result  = $stmt->get_result();
+$products = $result->fetch_all(MYSQLI_ASSOC);
+//print_r($products);
 // Get the total number of products
 $total_products = $conn->query('SELECT COUNT (*) FROM shop');
 template_header('Products');
+print_r($product['book_id']);
 ?>
 
 <div class="products content-wrapper">
@@ -28,6 +29,7 @@ template_header('Products');
     <p><?=$total_products?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
+            <?print_r($product['book_id'])?>
         <a href="index.php?page=product&book_id=<?=$product['book_id']?>" class="product">
             <img src="/Images/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
@@ -48,6 +50,7 @@ template_header('Products');
         <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>
         <?php endif; ?>
     </div>
+
 </div>
 
 <?=template_footer()?>

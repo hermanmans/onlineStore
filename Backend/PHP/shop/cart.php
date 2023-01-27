@@ -10,7 +10,8 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     $stmt->bind_param("i", [$_POST['product_id']]);
     $stmt->execute();
     // Fetch the product from the database and return the result as an Array
-    $product = $stmt->fetch_assoc();
+    $result  = $stmt->get_result();
+    $product = $result->fetch_array(MYSQLI_ASSOC); 
     // Check if the product exists (array is not empty)
     if ($product && $quantity > 0) {
         // Product exists in database, now we can create/update the session variable for the cart

@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 // Check to make sure the id parameter is specified in the URL
-$book_id = [$_GET['book_id']];
+$book_id = intval($_GET['book_id']);
 //print_r($book_id);
 if (isset($book_id)) {
     // Prepare statement and execute, prevents SQL injection
@@ -12,6 +12,7 @@ if (isset($book_id)) {
     $result  = $stmt->get_result();
     $product = $result->fetch_array(MYSQLI_ASSOC); 
     print_r($product);
+    echo gettype($book_id);
     // Check if the product exists (array is not empty)
     if (!$product) {
         // Simple error to display if the id for the product doesn't exists (array is empty)
