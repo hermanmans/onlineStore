@@ -9,12 +9,8 @@ $current_page =isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1
 $stmt = $conn->prepare('SELECT * FROM shop ORDER BY book_id ASC LIMIT ?,?');
 // bindValue will allow us to use integer in the SQL statement, we need to use for LIMIT
 $limitA = 1;
-$limitB = 2;
 $calc = (($current_page - $limitA)*$num_products_on_each_page);
-$stmt->bind_param("ii",$limitB, $num_products_on_each_page);
-$stmt->bind_param("ii",$limitA, $calc);
-
-
+$stmt->bind_param("ii",$calc, $num_products_on_each_page);
 $stmt->execute();
 // Fetch the products from the database and return the result as an Array
 $result  = $stmt->get_result();
@@ -31,7 +27,7 @@ print_r($product['book_id']);
     <p><?=$total_products?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
-            <?print_r($product['book_id'])?>
+            <?$product['book_id']?>
         <a href="index.php?page=product&book_id=<?=$product['book_id']?>" class="product">
             <img src="/Images/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
@@ -44,14 +40,14 @@ print_r($product['book_id']);
         </a>
         <?php endforeach; ?>
     </div>
-    <div class="buttons">
+    <button type="button" class="buttons">
         <?php if ($current_page > 1): ?>
-        <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a>
+        <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a>;
         <?php endif; ?>
         <?php if ($total_products > ($current_page * $num_products_on_each_page) - $num_products_on_each_page + count($products)): ?>
-        <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>
+        <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>;
         <?php endif; ?>
-    </div>
+    </button>
 
 </div>
 
