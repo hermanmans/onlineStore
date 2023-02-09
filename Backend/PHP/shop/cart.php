@@ -78,7 +78,8 @@ if ($products_in_cart) {
     // We only need the array keys, not the values, the keys are the id's of the products
     $stmt->execute();
     // Fetch the products from the database and return the result as an Array
-    $products = $stmt->fetchAll();
+    $result  = $stmt->get_result();
+    $products = $result->fetch_array(MYSQLI_ASSOC);
     // Calculate the subtotal
     foreach ($products as $product) {
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['book_id']];
@@ -141,6 +142,5 @@ if ($products_in_cart) {
 </div>
 
 <?=
-include 'functions.php';
 template_footer();
 ?>
