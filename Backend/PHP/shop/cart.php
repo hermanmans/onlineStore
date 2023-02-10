@@ -1,13 +1,12 @@
 <?php
-include 'connect.php';
 // If the user clicked the add to cart button on the product page we can check for the form data
 if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
     // Set the post variables so we easily identify them, also make sure they are integer
-    $product_id = (int)$_POST['product_id'];
-    $quantity = (int)$_POST['quantity'];
+    $product_id = intval($_POST['product_id']);
+    $quantity = intval($_POST['quantity']);
     // Prepare the SQL statement, we basically are checking if the product exists in our databaser
     $stmt = $conn->prepare('SELECT * FROM shop WHERE book_id = ?');
-    $stmt->bind_param("i", [$_POST['product_id']]);
+    $stmt->bind_param("i", $product_id );
     $stmt->execute();
     // Fetch the product from the database and return the result as an Array
     $result  = $stmt->get_result();
@@ -26,6 +25,7 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
         } else {
             // There are no products in cart, this will add the first product to cart
             $_SESSION['cart'] = array($product_id => $quantity);
+
         }
     }
     // Prevent form resubmission...
@@ -79,7 +79,7 @@ if ($products_in_cart) {
     $stmt->execute();
     // Fetch the products from the database and return the result as an Array
     $result  = $stmt->get_result();
-    $products = $result->fetch_array(MYSQLI_ASSOC);
+    $products = $result->fetch_all(MYSQLI_ASSOC);
     // Calculate the subtotal
     foreach ($products as $product) {
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['book_id']];

@@ -10,7 +10,7 @@ if (isset($book_id)) {
     $stmt->execute();
     // Fetch the product from the database and return the result as an Array
     $result  = $stmt->get_result();
-    $product = $result->fetch_array(MYSQLI_ASSOC); 
+    $product = $result->fetch_array(); 
     print_r($product);
     echo gettype($book_id);
     // Check if the product exists (array is not empty)
