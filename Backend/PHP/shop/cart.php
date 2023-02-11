@@ -1,18 +1,22 @@
 <?php
+
 // If the user clicked the add to cart button on the product page we can check for the form data
 if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
     // Set the post variables so we easily identify them, also make sure they are integer
-    $product_id = intval($_POST['product_id']);
-    $quantity = intval($_POST['quantity']);
+    $_SESSION['product_id']=$_POST['product_id'];////////// session was added here///////////
+    $_SESSION['quantity']=$_POST['quantity'];
+    $product_id = intval($_SESSION['product_id']);
+    $quantity = intval($_SESSION['quantity']);
+    
     // Prepare the SQL statement, we basically are checking if the product exists in our databaser
     $stmt = $conn->prepare('SELECT * FROM shop WHERE book_id = ?');
     $stmt->bind_param("i", $product_id );
     $stmt->execute();
     // Fetch the product from the database and return the result as an Array
     $result  = $stmt->get_result();
-    $product = $result->fetch_array(MYSQLI_ASSOC); 
+    $product = $result->fetch_all(MYSQLI_ASSOC); 
     // Check if the product exists (array is not empty)
-    if ($product && $quantity > 0) {
+    if ($product && $quantity > 0) {/////////////////// error here somewhere //////////////
         // Product exists in database, now we can create/update the session variable for the cart
         if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
             if (array_key_exists($product_id, $_SESSION['cart'])) {

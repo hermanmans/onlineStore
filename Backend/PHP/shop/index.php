@@ -7,4 +7,5 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 print_r($page);
 // Include and show the requested page
 include $page . '.php';
+print_r($_SESSION);
 ?>

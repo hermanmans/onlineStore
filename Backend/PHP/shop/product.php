@@ -1,4 +1,5 @@
 <?php
+include 'connect.php';
 ini_set('display_errors', 1);
 // Check to make sure the id parameter is specified in the URL
 $book_id = intval($_GET['book_id']);
