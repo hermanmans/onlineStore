@@ -1,5 +1,5 @@
 <?php
-
+include "connect.php";
 // If the user clicked the add to cart button on the product page we can check for the form data
 if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
     // Set the post variables so we easily identify them, also make sure they are integer
@@ -14,23 +14,24 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     $stmt->execute();
     // Fetch the product from the database and return the result as an Array
     $result  = $stmt->get_result();
-    $product = $result->fetch_all(MYSQLI_ASSOC); 
+    $item = $result->fetch_array();
+
     // Check if the product exists (array is not empty)
-    if ($product && $quantity > 0) {/////////////////// error here somewhere //////////////
+    if ($item && $quantity > 0) {/////////////////// error here somewhere //////////////
         // Product exists in database, now we can create/update the session variable for the cart
         if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
             if (array_key_exists($product_id, $_SESSION['cart'])) {
                 // Product exists in cart so just update the quanity
                 $_SESSION['cart'][$product_id] += $quantity;
-            } else {
+            }else {
                 // Product is not in cart so add it
                 $_SESSION['cart'][$product_id] = $quantity;
-            }
+            };
         } else {
             // There are no products in cart, this will add the first product to cart
             $_SESSION['cart'] = array($product_id => $quantity);
 
-        }
+        };
     }
     // Prevent form resubmission...
     header('location: index.php?page=cart');
