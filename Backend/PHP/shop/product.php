@@ -23,7 +23,6 @@ if (isset($book_id)) {
     // Simple error to display if the id wasn't specified
     exit('Id not specified!');
 }
-
 template_header('Product');
 ?>
 

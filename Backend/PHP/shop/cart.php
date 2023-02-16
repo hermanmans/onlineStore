@@ -88,11 +88,11 @@ if ($products_in_cart) {
     $products = $res->fetch_all(MYSQLI_ASSOC);
     //print_r($array_to_question_marks);
     //print_r($param);
-    print_r ($products_in_cart);
+    //print_r ($products_in_cart);
+    print_r ($_SESSION['cart']);
     //print_r($products);
     // Calculate the subtotal
     foreach ($products as $product) {
-        print_r($product);
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['book_id']];
     }
 }
@@ -122,7 +122,7 @@ if ($products_in_cart) {
                 <tr>
                     <td class="img">
                         <a href="index.php?page=product&book_id=<?=$product['book_id']?>">
-                            <img src="/Images/<?=$product['image']?>" width="50" height="50" alt="<?=$product['book_name']?>">
+                            <img src="/Images/<?=$product['image']?>"style='margin-left:10px;border-radius:10%' width="150" height="180" alt="<?=$product['book_name']?>">
                         <!--Specify image folder-->
                         </a>
                     </td>
