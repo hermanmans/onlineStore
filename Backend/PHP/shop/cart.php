@@ -73,20 +73,26 @@ if (isset($_POST['placeorder']) && isset($_SESSION['cart']) && !empty($_SESSION[
 $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 $products = array();
 $subtotal = 0.00;
+$keys = array_keys($products_in_cart);
 // If there are products in cart
 if ($products_in_cart) {
     // There are products in the cart so we need to select those products from the database
     // Products in cart array to question mark string array, we need the SQL statement to include IN (?,?,?,...etc)
     $array_to_question_marks = implode(',', array_fill(0, count($products_in_cart), '?'));
+    $param = implode(',', array_fill(0, count($products_in_cart), 'i'));
     $stmt = $conn->prepare('SELECT * FROM shop WHERE book_id IN (' . $array_to_question_marks . ')');
-    $stmt->bind_param("i", array_keys($products_in_cart));
-    // We only need the array keys, not the values, the keys are the id's of the products
+    $stmt->bind_param($param, ...$keys);
     $stmt->execute();
     // Fetch the products from the database and return the result as an Array
-    $result  = $stmt->get_result();
-    $products = $result->fetch_all(MYSQLI_ASSOC);
+    $res  = $stmt->get_result();
+    $products = $res->fetch_all(MYSQLI_ASSOC);
+    //print_r($array_to_question_marks);
+    //print_r($param);
+    print_r ($products_in_cart);
+    //print_r($products);
     // Calculate the subtotal
     foreach ($products as $product) {
+        print_r($product);
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['book_id']];
     }
 }
