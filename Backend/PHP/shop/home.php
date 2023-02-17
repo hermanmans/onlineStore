@@ -17,11 +17,11 @@ template_header('Home');
     <p>Books that everyone should read</p>
 </div>
 <div class="recentlyadded content-wrapper">
-    <h2>Recently Added Products</h2>
+    <h2>Products on Special</h2>
     <div class="products">
         <?php foreach ($recently_added_products as $product): ?>
         <a href="index.php?page=product&book_id=<?=$product['book_id']?>" class="product">
-            <img src="/Images/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
+            <img src="/Images/<?=$product['image']?>" style='border-radius:10%' width="150" height="180" alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
             <span class="price">
                  &#82;<?=$product['price']?>

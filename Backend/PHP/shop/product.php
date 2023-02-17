@@ -24,6 +24,10 @@ if (isset($book_id)) {
     exit('Id not specified!');
 }
 template_header('Product');
+print_r($_SESSION['cart']);
+//print_r($_SESSION['product_id']);
+//print_r($_SESSION['quantity']);
+print_r($_SESSION['test']);
 ?>
 
 <div class="product content-wrapper">

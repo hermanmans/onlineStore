@@ -93,7 +93,7 @@ main,.featured {
 	background-image: url(/Images/background.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 500px;
+	height: auto;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
@@ -127,9 +127,7 @@ main .recentlyadded h2 {
 main,.recentlyadded,.products, main,.products,.products-wrapper {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	padding: 40px 0 0 0;
+	justify-content: center;
 }
 main .recentlyadded .products .product, main .products .products-wrapper .product {
 	display: block;
@@ -177,6 +175,7 @@ main > .product h1 {
 }
 main > .product .price {
 	display: block;
+	text-align: center;
 	font-size: 22px;
 	color: #999999;
 }
@@ -254,7 +253,7 @@ main .cart h1 {
 main .cart table {
 	width: 100%;
 }
-main .cart,table,thead td {
+main .cart table thead td {
 	padding: 30px 0;
 	border-bottom: 1px solid #EEEEEE;
 }
@@ -268,7 +267,7 @@ main .cart table tbody td {
 main .cart table tbody td:last-child {
 	text-align: right;
 }
-main .cart table {
+main .cart table .img{
 	width: 80px;
 }
 main .cart table .remove {
@@ -344,4 +343,7 @@ footer {
 }
 .imgCart{
 	border-radius: 10px 10px 10px 10px;
+}
+.carousel-inner{
+	display: flex;
 }

@@ -20,6 +20,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
 $total_products = $conn->query('SELECT COUNT (*) FROM shop');
 template_header('Products');
 print_r($product['book_id']);
+print_r($products[0]['image']);
 ?>
 
 <div class="products content-wrapper">
@@ -29,18 +30,18 @@ print_r($product['book_id']);
         <?php foreach ($products as $product): ?>
             <?$product['book_id']?>
         <a href="index.php?page=product&book_id=<?=$product['book_id']?>" class="product">
-            <img src="/Images/<?=$product['image']?>" width="200" height="200" alt="<?=$product['book_name']?>">
+            <img src="/Images/<?=$product['image']?>" style='border-radius:10%' width="150" height="180" alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
             <span class="price">
                 &#82;<?=$product['price']?>
                 <?php if ($product['retail_price'] > 0): ?>
-                <span class="rrp">&#82;;<?=$product['retail_price']?></span>
+                <span class="rrp">&#82;<?=$product['retail_price']?></span>
                 <?php endif; ?>
             </span>
         </a>
         <?php endforeach; ?>
     </div>
-    <button type="button" class="buttons">
+    <button type="button" class="buttons">Next
         <?php if ($current_page > 1): ?>
         <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a>;
         <?php endif; ?>
@@ -48,7 +49,39 @@ print_r($product['book_id']);
         <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>;
         <?php endif; ?>
     </button>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
 
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+            <img src="/Images/<?=$products[0]['image']?>" style='border-radius:10%' width="100%" height="180" alt="<?=$products[0]['book_name']?>">
+            </div>
+
+            <div class="item">
+            <img src="/Images/<?=$products[1]['image']?>" style='border-radius:10%' width="100%" height="180" alt="<?=$products[1]['book_name']?>">
+            </div>
+
+            <div class="item">
+            <img src="/Images/<?=$products[2]['image']?>" style='border-radius:10%' width="100%" height="180" alt="<?=$products[2]['book_name']?>">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span >Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span >Next</span>
+        </a>
+    </div>        
 </div>
 
 <?=template_footer()?>

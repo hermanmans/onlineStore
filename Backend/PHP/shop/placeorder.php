@@ -1,4 +1,5 @@
 <?=
+session_destroy();
 template_header('Place Order');
 ?>
 
