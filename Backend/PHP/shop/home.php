@@ -4,7 +4,7 @@
 $sql='SELECT * FROM shop ORDER BY book_id ASC LIMIT 4;';
 $result = $conn->query($sql);
 if ($result) {
-    echo "New record created successfully";
+    //echo "New record created successfully";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   };

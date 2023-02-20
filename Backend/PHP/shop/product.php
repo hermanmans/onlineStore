@@ -12,8 +12,8 @@ if (isset($book_id)) {
     // Fetch the product from the database and return the result as an Array
     $result  = $stmt->get_result();
     $product = $result->fetch_array(); 
-    print_r($product);
-    echo gettype($book_id);
+    //print_r($product);
+    //echo gettype($book_id);
     // Check if the product exists (array is not empty)
     if (!$product) {
         // Simple error to display if the id for the product doesn't exists (array is empty)
@@ -24,10 +24,10 @@ if (isset($book_id)) {
     exit('Id not specified!');
 }
 template_header('Product');
-print_r($_SESSION['cart']);
+//print_r($_SESSION['cart']);
 //print_r($_SESSION['product_id']);
 //print_r($_SESSION['quantity']);
-print_r($_SESSION['test']);
+//print_r($_SESSION['test']);
 ?>
 
 <div class="product content-wrapper">
