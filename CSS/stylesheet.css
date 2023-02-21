@@ -222,10 +222,6 @@ main > .products h1 {
 	text-align: center;
 	width: 100%;
 }
-main > .products .buttons {
-	text-align: right;
-	padding-bottom: 40px;
-}
 main > .products .buttons a {
 	display: inline-block;
 	text-decoration: none;
@@ -343,7 +339,4 @@ footer {
 }
 .imgCart{
 	border-radius: 10px 10px 10px 10px;
-}
-.carousel-inner{
-	display: flex;
 }

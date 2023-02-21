@@ -17,17 +17,17 @@ $result  = $stmt->get_result();
 $products = $result->fetch_all(MYSQLI_ASSOC);
 //print_r($products);
 // Get the total number of products
-$total_products = 23;
+$total_products = 22;//$conn->query('SELECT COUNT(*) FROM shop');
 template_header('Products');
 //print_r($product['book_id']);
 //print_r($products[0]['image']);
-print_r ($total_products);
-print_r(($current_page * $num_products_on_each_page));
+echo $total_products;
+$progress = ($current_page * $num_products_on_each_page);
 ?>
 
 <div class="products content-wrapper">
     <h1>Products</h1>
-    <p><?=$total_products?> Products</p>
+    <p><?=$progress?> of <?=$total_products?> Products</p>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
             <?$product['book_id']?>
@@ -44,12 +44,12 @@ print_r(($current_page * $num_products_on_each_page));
         <?php endforeach; ?>
     </div>
     <div class="buttons">
-        <button type="button" >Next
+        <button type="button" >
             <?php if ($current_page > 1): ?>
             <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a>
             <?php endif; ?>
-        </button>
-        <button type="button" >
+        </button> 
+        <button type="button" >   
             <?php if ($total_products > ($current_page * $num_products_on_each_page)): ?>
             <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>
             <?php endif; ?>
