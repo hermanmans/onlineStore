@@ -2,7 +2,7 @@
 include 'connect.php';
 //include "functions.php";
 // The amounts of products to show on each page
-$num_products_on_each_page = 4;
+$num_products_on_each_page = 8;
 // The current page, in the URL this will appear as index.php?page=products&p=1, index.php?page=products&p=2, etc...
 $current_page =isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
 // Select products ordered by the date added
@@ -21,13 +21,11 @@ $total_products = 22;//$conn->query('SELECT COUNT(*) FROM shop');
 template_header('Products');
 //print_r($product['book_id']);
 //print_r($products[0]['image']);
-echo $total_products;
 $progress = ($current_page * $num_products_on_each_page);
 ?>
 
 <div class="products content-wrapper">
-    <h1>Products</h1>
-    <p><?=$progress?> of <?=$total_products?> Products</p>
+    <h1 id= productHead>Products</h1>
     <div class="products-wrapper">
         <?php foreach ($products as $product): ?>
             <?$product['book_id']?>
@@ -36,24 +34,20 @@ $progress = ($current_page * $num_products_on_each_page);
             <span class="name"><?=$product['book_name']?></span>
             <span class="price">
                 &#82;<?=$product['price']?>
-                <?php if ($product['retail_price'] > 0): ?>
-                <span class="rrp">&#82;<?=$product['retail_price']?></span>
-                <?php endif; ?>
             </span>
         </a>
         <?php endforeach; ?>
-    </div>
-    <div class="buttons">
-        <button type="button" >
-            <?php if ($current_page > 1): ?>
-            <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a>
-            <?php endif; ?>
-        </button> 
-        <button type="button" >   
-            <?php if ($total_products > ($current_page * $num_products_on_each_page)): ?>
-            <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>
-            <?php endif; ?>
-        </button>
+        <div class = navigate>
+            <p>Page <?=$current_page?> of <?=ceil($total_products/$num_products_on_each_page)?></p>
+            <button type="button" class="buttons" >
+                <?php if ($current_page > 1): ?>
+                <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a>
+                <?php endif; ?>
+                <?php if ($total_products > ($current_page * $num_products_on_each_page)): ?>
+                <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>
+                <?php endif; ?>
+            </button>
+        </div>
     </div>
 
 <?=template_footer()?>
