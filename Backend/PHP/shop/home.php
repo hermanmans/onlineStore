@@ -1,6 +1,5 @@
 <?php
 // Get the 4 most recently added products
-
 $sql='SELECT * FROM shop ORDER BY book_id ASC LIMIT 4;';
 $result = $conn->query($sql);
 if ($result) {

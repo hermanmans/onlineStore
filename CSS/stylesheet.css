@@ -16,6 +16,13 @@ body {
 	margin: 0;
 	padding-bottom: 100px; /* Same height as footer */
 }
+main{
+	padding-top: 100px;
+	background-image: url(/Images/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: auto;
+}
 h1, h2, h3, h4, h5 {
 	color: white;
 }
@@ -24,22 +31,21 @@ h1 {
 }
 #productHead{
 	display: inline-block;
-	margin: 0;
 	width: 1050px;
 	font-family: Rockwell, Courier Bold, Courier, Georgia, Times, Times New Roman, serif;
 	font-size: 68px;
 	color: #FFFFFF;
-	padding-bottom: 10px;
 }
-.content-wrapper {
-	width: 100%;
-	margin: 0 auto;
-}
+
 header {
 	border-bottom: 1px solid #EEEEEE;
 }
 header .content-wrapper {
 	display: flex;
+	width: 100%;
+	position: fixed;
+	background-color: white;
+
 }
 header h1 {
 	display: flex;
@@ -55,6 +61,7 @@ header nav {
 	flex-basis: 0;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 }
 header nav a {
 	text-decoration: none;
@@ -102,10 +109,6 @@ header .link-icons a span {
 main,.featured {
 	display: flex;
 	flex-direction: column;
-	background-image: url(/Images/background.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: auto;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
@@ -176,6 +179,8 @@ main .recentlyadded .products .product img, main .products .products-wrapper .pr
 	border: 1px solid lightblue;
 	border-radius: 10%;
 	margin-left: 5px;
+	width:auto;
+	height:300px;
 }
 main .recentlyadded .products .product .name, main .products .products-wrapper .product .name {
 	display: block;
@@ -275,6 +280,12 @@ main > .products .buttons {
 	border-radius: 5px;
 	padding: 0px;
 	background: #4e5c70;
+	border: 0;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
 }
 main > .products .buttons a:hover {
 	background: #434f61;
@@ -318,19 +329,20 @@ main .cart table .remove {
 main .cart table .remove:hover {
 	text-decoration: underline;
 }
-main .cart table .price {
+main .cart table .price{
 	color:black;
 }
+
 main .cart table a {
 	text-decoration: none;
 	color: white;
 }
 main .cart table input[type="number"] {
-	width: 68px;
+	width: 50px;
 	padding: 10px;
-	border: 1px solid #ccc;
 	color: black;
 	border-radius: 5px;
+	margin: auto;
 }
 main .cart .subtotal {
 	text-align: right;
@@ -345,10 +357,22 @@ main .cart .subtotal .price {
 	color: black;
 	font-weight: bold;
 }
-main .cart .buttons {
-	text-align: right;
-	padding-bottom: 40px;
+main .cart .cartButtons input[type="submit"] {
+	padding: 12px 20px;
+	border-radius: 5px;
+	background: #4e5c70;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	border: 0;
 }
+.cartButtons{
+	padding-bottom: 1%;
+	text-align:right;
+}
+
 main .cart .buttons input[type="submit"] {
 	margin-left: 5px;
 	padding: 12px 20px;
@@ -360,7 +384,7 @@ main .cart .buttons input[type="submit"] {
 	cursor: pointer;
 	border-radius: 5px;
 }
-main .cart .buttons input[type="submit"]:hover {
+main .cart input[type="submit"]:hover {
 	background: #434f61;
 }
 main .placeorder h1 {
@@ -385,27 +409,42 @@ footer {
 .imgCart{
 	border-radius: 10px 10px 10px 10px;
 }
-.details,h3{
+.details{
+	text-align: left;
+	color: black;
+}
+.details h3{
 	font-family: Rockwell, Courier Bold, Courier, Georgia, Times, Times New Roman, serif;
 	font-size: 34px;
-	color: #FFFFFF;
-	padding-bottom: 10px;
-	text-align: left;
-	margin-left: auto;
-}
-.details p{
 	margin-left: 20px;
 }
-
+.details ul h3,#contactHead{
+	font-family: Rockwell, Courier Bold, Courier, Georgia, Times, Times New Roman, serif;
+	font-size: 34px;
+	margin:0;
+}
+.details p,li{
+	margin-left: 20px;
+	text-align: left;
+	color: black;
+}
+.message,input[type="text"]{
+	display: flex;
+	column-gap: 10%;
+	margin: 0;
+}
+.details input[type="submit"]{
+	padding: 12px 20px;
+	margin-top: 10px;
+	border-radius: 5px;
+	background: #4e5c70;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	border: 0;
+}
 .map{
 	margin-left: 20px;
 }
-
-.message, input{
-	display: flex;
-	column-gap: 10%;
-}
-.searchBlock{
-	padding: 5px;
-}
-

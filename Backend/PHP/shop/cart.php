@@ -149,7 +149,7 @@ if ($products_in_cart) {
             <span class="text">Subtotal</span>
             <span class="price">&#82;<?=$subtotal?></span>
         </div>
-        <div class="buttons">
+        <div class="cartButtons">
             <input type="submit" value="Update" name="update">
             <input type="submit" value="Place Order" name="placeorder">
         </div>

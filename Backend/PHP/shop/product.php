@@ -31,7 +31,7 @@ template_header('Product');
 ?>
 
 <div class="product content-wrapper">
-    <img class = icon src="/Images/<?=$product['image']?>" width="300" height="300" alt="<?=$product['book_name']?>">
+    <img class = icon src="/Images/<?=$product['image']?>" alt="<?=$product['book_name']?>">
     <div>
         <h1 class="name"><?=$product['book_name']?></h1>
         <span class="price">
