@@ -1,4 +1,7 @@
 <?php
+//$message = htmlentities($_POST['message']);
+///$user = htmlentities($_POST['user']);
+//echo $user." ".$message;
 session_start();
 // Include functions and connect to the database using PDO MySQL
 include 'connect.php';

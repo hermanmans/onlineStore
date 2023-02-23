@@ -9,6 +9,25 @@ template_header('about_us');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('6BXSWOkApd5RYLe73');
+        })();
+        window.onload = function() {
+            document.getElementById('test').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // these IDs from the previous steps
+                emailjs.sendForm('service_budqe7w', 'template_w3kjoe8', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
 </head>
 <body class=aboutUs>
     <div class=details>
@@ -26,10 +45,13 @@ template_header('about_us');
             <li>Email: www.thebookshop.co.za</li>
             <li>Facebook:www.facebook.com</li>
         </ul>
-        <form class="searchBlock" action="index.php" method="POST" enctype="multipart/form-data">
+        <!-- action="index.php" method="POST"-->
+        <form id="test" class="searchBlock" action="index.php" method="POST" enctype="multipart/form-data">
             <h3 id='contactHead'>Contact Us...</h3>
             <label for="user">User Name</label>
             <input type="text" name="user" id="user">
+            <label>Email</label>
+            <input type="email" name="user_email">
             <label for="message">Message</label>
             <input type="text" name="message" id="message">
             <input type="submit" name="go" value="Send Message" id="go">

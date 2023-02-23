@@ -68,6 +68,7 @@ header nav a {
 	color: black;
 	padding: 10px 10px;
 	margin: 0 10px;
+	width:max-content;
 }
 header nav a:hover {
 	border-bottom: 1px solid #aaa;
@@ -146,13 +147,7 @@ main,.recentlyadded,.products, main,.products,.products-wrapper {
 	justify-content: center;
 	width: 100%;
 }
-@media screen and (max-width: 700px) {
-	.products{
-		flex-direction: column;
-		align-items: center;
-	};
 
-}
 main .recentlyadded .products .product, main .products .products-wrapper .product {
 	display: flex;
 	flex-direction: column;
@@ -206,6 +201,7 @@ main .recentlyadded .products .product:hover .name, main .products .products-wra
 main > .product {
 	display: flex;
 	padding: 40px 0;
+	margin-left: 30px;
 }
 main > .product > div {
 	padding-left: 15px;
@@ -412,6 +408,7 @@ footer {
 .details{
 	text-align: left;
 	color: black;
+	margin-left: 30px;
 }
 .details h3{
 	font-family: Rockwell, Courier Bold, Courier, Georgia, Times, Times New Roman, serif;
@@ -428,7 +425,7 @@ footer {
 	text-align: left;
 	color: black;
 }
-.message,input[type="text"]{
+.message,input[type="text"],input[type="email"]{
 	display: flex;
 	column-gap: 10%;
 	margin: 0;
@@ -447,4 +444,63 @@ footer {
 }
 .map{
 	margin-left: 20px;
+}
+.back{
+	margin-left: 3px;
+	margin-top: 20%;
+	position: fixed;
+	border: 1px solid none;
+	border-radius:10px 10px 10px 10px;
+	background-color:#4e5c70;
+	width:30px;
+	height: 30px;
+	text-align: center;
+	padding-top: 3px;
+}
+.backLink{
+	color: white;
+	text-align: center;	
+}
+.backLink:hover{
+	color: black;
+}
+
+.back:hover{
+	background-color: #434f61;
+}
+
+@media screen and (max-width: 700px) {
+	.products{
+		flex-direction: column;
+		align-items: center;
+	};
+}
+@media screen {
+	html {
+	  scroll-behavior: smooth;
+	}
+}
+.index{
+    background-image: url(/IMAGES/background.jpg);
+	background-size: stretch;
+}
+.indexPage{
+    display: flex;
+    flex-direction: row;
+    
+}
+.register,.login{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    background-color:  #0487E2;
+    padding:20px;
+    border-radius:8px 8px 8px 8px;
+    border: solid 1px  #0487E2;
+    margin-left: 10%;
+    margin-top: 10%;
+	color: black;
+}
+.indexPageRegister{
+	margin:auto
 }

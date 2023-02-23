@@ -91,7 +91,7 @@ if ($products_in_cart) {
     //print_r($array_to_question_marks);
     //print_r($param);
     //print_r ($products_in_cart);
-    //print_r ($_SESSION['cart']);
+    print_r ($_SESSION['cart']);
     //print_r($products);
     // Calculate the subtotal
     
