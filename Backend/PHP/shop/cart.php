@@ -30,7 +30,6 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
         } else {
             // There are no products in cart, this will add the first product to cart
             $_SESSION['cart'] = array($product_id => $quantity);
-
         };
     }
     // Prevent form resubmission...
@@ -75,7 +74,7 @@ $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 $products = array();
 $subtotal = 0.00;
 $keys = array_keys($products_in_cart);
-$_SESSION['test'] = $keys;
+$values = array_values($products_in_cart);
 // If there are products in cart
 if ($products_in_cart) {
     // There are products in the cart so we need to select those products from the database
@@ -91,15 +90,34 @@ if ($products_in_cart) {
     //print_r($array_to_question_marks);
     //print_r($param);
     //print_r ($products_in_cart);
-    print_r ($_SESSION['cart']);
-    //print_r($products);
-    // Calculate the subtotal
+    //print_r ($_SESSION['cart']);
     
+    // Calculate the subtotal
     foreach ($products as $product) {
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['book_id']];
     }
     
 }
+    class Cart{
+        private $id;
+        private $amount;
+
+        public function __construct($id,$amount){
+            $this->id=$id;
+            $this->amount=$amount;
+        }
+        public function getID(){
+            return $this->id;
+        }
+    };
+    $obj = new Cart($keys, $values);
+    //print_r($_SESSION);
+    print_r($obj);
+    $tester = $obj->getID();
+    for($x=0;count($tester);$x++){
+        print_r($tester[$x]);
+    }
+    
 ?>
 <!--Creating shopping cart template-->
 <?=template_header('Cart')?>

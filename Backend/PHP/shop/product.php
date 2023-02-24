@@ -28,21 +28,14 @@ template_header('Product');
 //print_r($_SESSION['product_id']);
 //print_r($_SESSION['quantity']);
 //print_r($_SESSION['test']);
-class Book{
-    private $book_id;
-    public function __construct($book_id){
-        $this->book_id=$book_id;
-    }
-    public function getID(){
-        return $this->book_id;
-    }
-};
-$sql = 'SELECT * FROM shop';
-$getAll = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
-$_SESSION['shop'] = new Book($getAll);
-//print_r($_SESSION['shop']);
-//print_r($_SESSION['shop']->getID());
 
+$sql = 'SELECT book_id FROM shop';
+$getAll = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
+
+//print_r($object->getID());
+
+//print_r ($object->getID());
+//print_r($_SESSION['shop']->getID());
 ?>
 
 <div class="product content-wrapper">
