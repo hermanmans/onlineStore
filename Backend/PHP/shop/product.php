@@ -50,6 +50,7 @@ $getAll = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
         <form action="index.php?page=cart" method="post">
             <input type="number" name="quantity" value="1" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
             <input type="hidden" name="product_id" value="<?=$product['book_id']?>">
+            <input type="hidden" name="book" value="<?=$product['book_name']?>">
             <input type="submit" value="Add To Cart">
         </form>
         <div class="description">

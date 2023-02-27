@@ -1,13 +1,16 @@
 <?php
 include "connect.php";
+
 // If the user clicked the add to cart button on the product page we can check for the form data
-if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
+if (isset($_POST['product_id'], $_POST['quantity'],$_POST['book']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
     // Set the post variables so we easily identify them, also make sure they are integer
     $_SESSION['product_id']=$_POST['product_id'];////////// session was added here///////////
     $_SESSION['quantity']=$_POST['quantity'];
+    $_SESSION['book_name']=$_POST['book'];
     $product_id = intval($_SESSION['product_id']);
     $quantity = intval($_SESSION['quantity']);
-    
+
+   
     // Prepare the SQL statement, we basically are checking if the product exists in our databaser
     $stmt = $conn->prepare('SELECT * FROM shop WHERE book_id = ?');
     $stmt->bind_param("i", $product_id );
@@ -30,6 +33,7 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
         } else {
             // There are no products in cart, this will add the first product to cart
             $_SESSION['cart'] = array($product_id => $quantity);
+
         };
     }
     // Prevent form resubmission...
@@ -101,22 +105,37 @@ if ($products_in_cart) {
     class Cart{
         private $id;
         private $amount;
+        private $username;
+        private $book;
 
-        public function __construct($id,$amount){
+        public function __construct($username,$id,$book,$amount){
+            $this->username=$username;
             $this->id=$id;
+            $this->book=$book;
             $this->amount=$amount;
         }
         public function getID(){
             return $this->id;
         }
+        public function getBook(){
+            return $this->book;
+        }
+        public function getUser(){
+            return $this->username;
+        }
+        public function getAmount(){
+            return $this->amount;
+        }
+    
     };
-    $obj = new Cart($keys, $values);
+    $obj = new Cart($_SESSION['username'],$keys,$_SESSION['book_name'], $values,);
     //print_r($_SESSION);
     print_r($obj);
-    $tester = $obj->getID();
-    for($x=0;count($tester);$x++){
-        print_r($tester[$x]);
-    }
+    $x=$obj->getBook();
+    //print_r($_SESSION['cart']);
+    //$tester = $obj->getID();
+    $test = "INSERT INTO cart(username,book_name,book_id,quantity) VALUES ('Herman','$x','1','1'')";
+    $newCart =$conn->query($test);
     
 ?>
 <!--Creating shopping cart template-->

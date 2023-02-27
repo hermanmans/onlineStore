@@ -15,6 +15,5 @@ $conn = new mysqli($servername, $username, $password,$dbname); // Create connect
 if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 
-public function select()
 }
 //echo "Connection Successful";

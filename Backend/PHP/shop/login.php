@@ -54,6 +54,7 @@
 </html>
 
 <?php
+session_start();
 include ('connect.php');
 if(isset($_POST['submitNew'])){
   /////Register////////////////////
@@ -93,7 +94,9 @@ if(isset($_POST['submitLogin'])){
   $result = $conn->query($loginQuery);
   if ($result->num_rows > 0) {
         echo 'found!';
-        header("Location: index.php"); 
+        header("Location: index.php");
+        $_SESSION['username']=$user;
+        
     } else {
         echo 'Password or username incorrect!';
     };
