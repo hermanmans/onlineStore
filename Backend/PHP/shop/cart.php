@@ -108,7 +108,7 @@ if ($products_in_cart) {
         private $username;
         private $book;
 
-        public function __construct($username,$id,$book,$amount){
+        public function __construct($username,$book,$id,$amount){
             $this->username=$username;
             $this->id=$id;
             $this->book=$book;
@@ -128,13 +128,17 @@ if ($products_in_cart) {
         }
     
     };
-    $obj = new Cart($_SESSION['username'],$keys,$_SESSION['book_name'], $values,);
+    $obj = new Cart($_SESSION['username'],$_SESSION['book_name'],$keys,$values,);
     //print_r($_SESSION);
     print_r($obj);
-    $x=$obj->getBook();
+    print_r($_SESSION['cart']);
+    $valueUsername = $obj->getUser();
+    $valueBook = $obj->getBook();
+    $valueID= $obj->getID();
+    $valueQuantity = $obj->getAmount();
     //print_r($_SESSION['cart']);
     //$tester = $obj->getID();
-    $test = "INSERT INTO cart(username,book_name,book_id,quantity) VALUES ('Herman','$x','1','1'')";
+    $test = "INSERT INTO cart(username,book_name,book_id,quantity) VALUES ('$valueUsername','$valueBook','$valueID[0]','$valueQuantity[0]')";
     $newCart =$conn->query($test);
     
 ?>
