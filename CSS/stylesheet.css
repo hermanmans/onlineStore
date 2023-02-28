@@ -29,6 +29,10 @@ h1, h2, h3, h4, h5 {
 h1 {
 	color:black;
 }
+#image{
+	width:150px;
+	height:180px;
+}
 #productHead{
 	display: inline-block;
 	width: 1050px;
@@ -470,10 +474,29 @@ footer {
 }
 
 @media screen and (max-width: 700px) {
-	.products{
+	.products,.products-wrapper{
 		flex-direction: column;
+		flex-wrap: wrap;
 		align-items: center;
-	};
+	}
+	#productHead{
+		width: auto;
+	}
+	#image{
+		width: auto;
+	}
+
+}
+@media screen and (max-width: 500px) {
+	.content-wrapper{
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
+		padding: 20px;
+	}
+	main{
+		padding-top: 170px;
+	}
 }
 @media screen {
 	html {

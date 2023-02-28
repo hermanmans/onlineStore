@@ -3,7 +3,6 @@ include 'connect.php';
 ini_set('display_errors', 1);
 // Check to make sure the id parameter is specified in the URL
 $book_id = intval($_GET['book_id']);
-//print_r($book_id);
 if (isset($book_id)) {
     // Prepare statement and execute, prevents SQL injection
     $stmt = $conn->prepare('SELECT * FROM shop WHERE book_id = ?');
@@ -12,8 +11,6 @@ if (isset($book_id)) {
     // Fetch the product from the database and return the result as an Array
     $result  = $stmt->get_result();
     $product = $result->fetch_array(); 
-    //print_r($product);
-    //echo gettype($book_id);
     // Check if the product exists (array is not empty)
     if (!$product) {
         // Simple error to display if the id for the product doesn't exists (array is empty)
@@ -24,18 +21,8 @@ if (isset($book_id)) {
     exit('Id not specified!');
 }
 template_header('Product');
-//print_r($_SESSION['cart']);
-//print_r($_SESSION['product_id']);
-//print_r($_SESSION['quantity']);
-//print_r($_SESSION['test']);
-
 $sql = 'SELECT book_id FROM shop';
 $getAll = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
-
-//print_r($object->getID());
-
-//print_r ($object->getID());
-//print_r($_SESSION['shop']->getID());
 ?>
 
 <div class="product content-wrapper">

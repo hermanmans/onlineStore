@@ -20,7 +20,7 @@ template_header('Home');
     <div class="products">
         <?php foreach ($recently_added_products as $product): ?>
         <a href="index.php?page=product&book_id=<?=$product['book_id']?>" class="product">
-            <img src="/Images/<?=$product['image']?>" style='border-radius:10%' width="150" height="180" alt="<?=$product['book_name']?>">
+            <img id="image" src="/Images/<?=$product['image']?>" style='border-radius:10%' alt="<?=$product['book_name']?>">
             <span class="name"><?=$product['book_name']?></span>
             <span class="price">
                  &#82;<?=$product['price']?>

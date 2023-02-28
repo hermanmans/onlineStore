@@ -33,7 +33,8 @@ if (isset($_POST['product_id'], $_POST['quantity'],$_POST['book']) && is_numeric
         } else {
             // There are no products in cart, this will add the first product to cart
             $_SESSION['cart'] = array($product_id => $quantity);
-
+           
+            
         };
     }
     // Prevent form resubmission...
@@ -91,17 +92,13 @@ if ($products_in_cart) {
     // Fetch the products from the database and return the result as an Array
     $res  = $stmt->get_result();
     $products = $res->fetch_all(MYSQLI_ASSOC);
-    //print_r($array_to_question_marks);
-    //print_r($param);
-    //print_r ($products_in_cart);
-    //print_r ($_SESSION['cart']);
-    
     // Calculate the subtotal
     foreach ($products as $product) {
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['book_id']];
     }
     
 }
+//Create a cart class for adding products to database
     class Cart{
         private $id;
         private $amount;
@@ -128,22 +125,29 @@ if ($products_in_cart) {
         }
     
     };
-    $obj = new Cart($_SESSION['username'],$_SESSION['book_name'],$keys,$values,);
-    //print_r($_SESSION);
-    print_r($obj);
-    print_r($_SESSION['cart']);
-    $valueUsername = $obj->getUser();
-    $valueBook = $obj->getBook();
-    $valueID= $obj->getID();
-    $valueQuantity = $obj->getAmount();
-    //print_r($_SESSION['cart']);
-    //$tester = $obj->getID();
-    $test = "INSERT INTO cart(username,book_name,book_id,quantity) VALUES ('$valueUsername','$valueBook','$valueID[0]','$valueQuantity[0]')";
-    $newCart =$conn->query($test);
-    
 ?>
 <!--Creating shopping cart template-->
-<?=template_header('Cart')?>
+<?=template_header('Cart');
+$obj = new Cart($_SESSION['username'],$_SESSION['book_name'],$keys,$values,);
+    $valueUsername = $obj->getUser();
+    $valueBook = $obj->getBook();
+    $valueID= end($obj->getID());
+    $valueQuantity = end($obj->getAmount());
+    $test = "INSERT INTO cart(username,book_name,book_id,quantity) VALUES ('$valueUsername','$valueBook','$valueID','$valueQuantity')";
+    $checkGroup = $conn->query("SELECT * FROM cart WHERE book_name = '$valueBook' AND quantity = '$valueQuantity'");
+    $check = $conn->query("SELECT * FROM cart WHERE book_name = '$valueBook'");
+    $checkrows = mysqli_num_rows($check);
+    $checkAll = mysqli_num_rows($checkGroup);
+    if($checkrows != $checkAll) {
+        $conn->query("DELETE FROM cart WHERE book_name = '$valueBook'");
+        $newCart =$conn->query($test);
+        echo "book already in cart";
+     } else if($checkrows>0 && $checkrows = $checkAll) {
+        echo "book already in cart";
+     } else {
+        $newCart =$conn->query($test);
+     }; 
+?>
 
 <div class="cart content-wrapper">
     <h1>Shopping Cart</h1>
@@ -168,7 +172,6 @@ if ($products_in_cart) {
                     <td class="img">
                         <a href="index.php?page=product&book_id=<?=$product['book_id']?>">
                             <img src="/Images/<?=$product['image']?>"style='margin-left:10px;border-radius:10%' width="150" height="180" alt="<?=$product['book_name']?>">
-                        <!--Specify image folder-->
                         </a>
                     </td>
                     <td>
